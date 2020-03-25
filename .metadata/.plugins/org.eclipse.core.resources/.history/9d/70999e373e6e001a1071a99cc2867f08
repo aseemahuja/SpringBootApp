@@ -1,0 +1,6 @@
+package com.example.demo.exception;
+
+public class ServiceException  extends RuntimeException{
+	private static final long serviceVersionUID=1L;
+
+}

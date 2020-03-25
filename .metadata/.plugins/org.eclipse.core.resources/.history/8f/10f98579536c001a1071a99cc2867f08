@@ -1,0 +1,17 @@
+package com.example.demo.model;
+
+import java.util.List;
+
+public class GetStudentListResponse {
+	List<Student> studentList;
+
+	public List<Student> getSudentList() {
+		return studentList;
+	}
+
+	public void setSudentList(List<Student> sudentList) {
+		this.studentList = sudentList;
+	}
+	
+
+}

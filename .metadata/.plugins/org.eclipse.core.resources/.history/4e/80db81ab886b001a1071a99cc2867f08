@@ -1,0 +1,26 @@
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class StudentController {
+	
+	@Value("${student.application.switch}")
+	boolean applicationSwitch;
+	
+	@Value("${student.application.name}")
+	String applicationName;
+	
+	@RequestMapping("/studentData")
+	public String studentData() {
+		if(applicationSwitch) {
+			return "Greeting Students!! From:" +applicationName;
+		} else {
+			return "Greetings Guests!! From:" + applicationName;
+		}
+		
+	}
+
+}

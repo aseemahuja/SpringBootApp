@@ -1,0 +1,15 @@
+package com.example.demo.exception;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+
+@ControllerAdvice
+public class GlobalExceptionHandler {
+	
+	@ExceptionHandler(NoHandlerFoundException.class)
+    public void handleNotFoundError(HttpServletResponse response, NoHandlerFoundException ex) {
+        ErrorDto errorDto = Errors.URL_NOT_FOUND.getErrorDto();
+        logger.error("URL not found exception: " + ex.getRequestURL());
+        prepareErrorResponse(response, HttpStatus.NOT_FOUND, errorDto);
+    }
+
+}

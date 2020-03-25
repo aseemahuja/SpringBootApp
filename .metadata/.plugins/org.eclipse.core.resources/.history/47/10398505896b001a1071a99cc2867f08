@@ -1,0 +1,31 @@
+package com.example.demo.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class StudentController {
+	
+	@Value("${student.application.switch}")
+	boolean applicationSwitch;
+	
+	@Value("${student.application.name}")
+	String applicationName;
+	
+	@Value("#{'${student.application.studentIds}'.split(',')}")
+	List<Integer> studentIdList;
+	
+	@RequestMapping("/studentData")
+	public String studentData() {
+		if(applicationSwitch) {
+			return "Greeting Students!! From:" +applicationName + studentIdList.get(1);
+		} else {
+			return "Greetings Guests!! From:" + applicationName + studentIdList.get(1);
+		}
+		
+	}
+
+}

@@ -1,0 +1,26 @@
+package com.example.demo.model;
+
+public class ErrorResponse {
+	String code;
+	String errorResponse;
+	String exception;
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getErrorResponse() {
+		return errorResponse;
+	}
+	public void setErrorResponse(String errorResponse) {
+		this.errorResponse = errorResponse;
+	}
+	public String getException() {
+		return exception;
+	}
+	public void setException(String exception) {
+		this.exception = exception;
+	}
+
+}

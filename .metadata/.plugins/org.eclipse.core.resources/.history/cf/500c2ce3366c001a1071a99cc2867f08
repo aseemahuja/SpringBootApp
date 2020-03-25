@@ -1,0 +1,9 @@
+student.application.switch=false
+student.application.name=tuppl
+student.application.studentIds=100,101,102,103
+
+logging.level.root=info
+logging.path=logs
+logging.file=${logging.path}/log.log
+logging.pattern.file=%d{ss-MM-yyyy HH:mm:ss:SSSS} [%thread] %-5level %logger{36}.%M - %msg%n
+logging.pattern.console=%d{ss-MM-yyyy HH:mm:ss:SSSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n

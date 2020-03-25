@@ -1,0 +1,25 @@
+package com.example.demo.exception;
+
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import com.example.demo.model.CommonResponse;
+
+@ControllerAdvice
+@PropertySource("classpath:errorMessages.properties")
+public class AppExceptionHandler {
+	
+	@ExceptionHandler(value= ServiceException.class)
+	public ResponseEntity<CommonResponse> serviceException(ServiceException exception){
+		
+		CommonResponse response = new CommonResponse();
+		response.setErrorCode("");
+		response.setErrorMessage(exception.getCode());
+		
+		return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+	}
+
+}

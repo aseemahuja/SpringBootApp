@@ -7,6 +7,13 @@ public class Person {
 	String city;
 	String state;
 	boolean hasLaptop;
+	String classId;
+	public String getClassId() {
+		return classId;
+	}
+	public void setClassId(String classId) {
+		this.classId = classId;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

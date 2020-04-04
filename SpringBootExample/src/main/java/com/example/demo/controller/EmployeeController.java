@@ -20,10 +20,11 @@ import com.example.demo.model.GetEmployeeByIdResponse;
 import com.example.demo.model.GetEmployeeListResponse;
 
 @RestController
+@RequestMapping("/employee")
 public class EmployeeController {
 	
 	
-	@RequestMapping(value="/employeeList", method = RequestMethod.GET)
+	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public ResponseEntity<GetEmployeeListResponse> employeeList()
 	{
 		GetEmployeeListResponse response = new GetEmployeeListResponse();
@@ -36,7 +37,7 @@ public class EmployeeController {
 		}
 	}
 	
-	@RequestMapping(value="/employeeDataById/{empId}", method= RequestMethod.GET)
+	@RequestMapping(value="/byId/{empId}", method= RequestMethod.GET)
 	public ResponseEntity<GetEmployeeByIdResponse> employeeDataById(@PathVariable(value="empId") int empId){
 		GetEmployeeByIdResponse response = new GetEmployeeByIdResponse();
 		if(StringUtils.isEmpty(empId)) {
@@ -59,7 +60,7 @@ public class EmployeeController {
 		
 	}
 	
-	@RequestMapping(value="/addEmployee", method= RequestMethod.POST)
+	@RequestMapping(value="/add", method= RequestMethod.POST)
 	public ResponseEntity<GetEmployeeListResponse> addEmployee(@RequestBody EmployeeDataRequest employeeDataRequest){
 		GetEmployeeListResponse response = new GetEmployeeListResponse();
 		if(null== employeeDataRequest

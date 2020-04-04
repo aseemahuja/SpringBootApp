@@ -24,6 +24,7 @@ import com.example.demo.model.Student;
 import com.example.demo.model.StudentDataRequest;
 
 @RestController
+@RequestMapping("/student")
 public class StudentController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
 	
@@ -36,7 +37,7 @@ public class StudentController {
 	@Value("#{'${student.application.studentIds}'.split(',')}")
 	List<Integer> studentIdList;
 	
-	@RequestMapping("/studentData")
+	@RequestMapping("/data")
 	public String studentData() {
 		System.out.println("I'm in studentData...................");
 		LOGGER.info("I'm in studentData..applicationSwitch:{}... applicationName:{}...",applicationSwitch, applicationName);
@@ -48,11 +49,11 @@ public class StudentController {
 		}
 	}
 	
-	@RequestMapping(value="/studentList", method = RequestMethod.GET)
+	@RequestMapping(value="/list", method = RequestMethod.GET)
 	public ResponseEntity<GetStudentListResponse> studentList()
 	{
 		GetStudentListResponse response = new GetStudentListResponse();
-		//response.setStudentList(ResponseDataSource.getStudentData());
+		response.setStudentList(ResponseDataSource.getStudentData());
 		
 		if(null!=response.getStudentList() && !response.getStudentList().isEmpty()) {
 			return new ResponseEntity<>(response, HttpStatus.OK);
@@ -61,7 +62,7 @@ public class StudentController {
 		}
 	}
 	
-	@RequestMapping(value="/studentDataById/{studentId}", method= RequestMethod.GET)
+	@RequestMapping(value="/byId/{studentId}", method= RequestMethod.GET)
 	public ResponseEntity<GetStudentByIdResponse> studentDataById(@PathVariable(value="studentId") int studentId){
 		GetStudentByIdResponse response = new GetStudentByIdResponse();
 		if(StringUtils.isEmpty(studentId)) {
@@ -84,7 +85,7 @@ public class StudentController {
 		
 	}
 	
-	@RequestMapping(value="/addStudent", method= RequestMethod.POST)
+	@RequestMapping(value="/add", method= RequestMethod.POST)
 	public ResponseEntity<GetStudentListResponse> addStudent(@RequestBody StudentDataRequest studentDataRequest){
 		GetStudentListResponse response = new GetStudentListResponse();
 		if(null== studentDataRequest

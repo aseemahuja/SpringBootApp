@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,9 @@ import com.example.demo.model.StudentDataRequest;
 @RequestMapping("/student")
 public class StudentController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(StudentController.class);
+	
+	@Autowired
+	ResponseDataSource responseDataSource;
 	
 	@Value("${student.application.switch}")
 	boolean applicationSwitch;
@@ -53,7 +57,7 @@ public class StudentController {
 	public ResponseEntity<GetStudentListResponse> studentList()
 	{
 		GetStudentListResponse response = new GetStudentListResponse();
-		response.setStudentList(ResponseDataSource.getStudentData());
+		response.setStudentList(responseDataSource.getStudentDataFromDB());
 		
 		if(null!=response.getStudentList() && !response.getStudentList().isEmpty()) {
 			return new ResponseEntity<>(response, HttpStatus.OK);

@@ -99,8 +99,10 @@ public class StudentController {
 			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 		}
 		
-		List<Student> studentList = ResponseDataSource.getStudentData();
-		studentList.add(studentDataRequest.getStudent());
+		responseDataSource.addStudentToDB(studentDataRequest.getStudent());
+		List<Student> studentList = responseDataSource.getStudentDataFromDB();
+		//List<Student> studentList = ResponseDataSource.getStudentData();
+		//studentList.add(studentDataRequest.getStudent());
 		response.setStudentList(studentList);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 		

@@ -66,6 +66,7 @@ public class ResponseDataSource {
 		studentTb.setHasLaptop(s.isHasLaptop());
 		studentTb.setAddress(s.getAddress());
 		studentTb.setClassId(s.getClassId());
+		studentTb.setStudentId(s.getStudentId());
 		
 		return studentRepo.save(studentTb);
 		
